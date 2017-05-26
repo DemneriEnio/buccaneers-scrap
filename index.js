@@ -58,7 +58,8 @@ mongoose.connection.once("open", function(err){
 		var teamSchema = mongoose.Schema({
 
 			team: {type: Array},
-      time: {type: String}
+      time: {type: String},
+      id: {type: String, unique: true}
 
 		});
 
@@ -301,15 +302,7 @@ x(url[count], "iframe@src")
 }
 else{
 
-    Team.remove({}, function(err, snippet){
-
-      if(err || !snippet){
-        console.log(err);
-      }
-
-    });
-
-    Team.create({team: allData, time: moment().format()}, function(err, snippet){
+    Team.findOneAndUpdate({id:"scrap"}, {team: allData, time: moment().format()}, function(err, snippet){
 
       if(err || !snippet){
         console.log(err);
