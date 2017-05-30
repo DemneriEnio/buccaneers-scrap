@@ -145,7 +145,7 @@ x(url[count], "iframe@src")
 					function yankees(i) {
 
 						driver
-							.wait(until.elementLocated(By.id(sections_arr[i].value)), 1000)
+							.wait(until.elementLocated(By.id(sections_arr[i].value)), 2000)
 							.then(function() {
 								driver
 									.executeScript("$('#" + sections_arr[i].value + "').mouseover()")
@@ -181,7 +181,7 @@ x(url[count], "iframe@src")
 
 																function rec(n){
 																	driver
-																		.wait(until.elementLocated(By.id("Map")),30000)
+																		.wait(until.elementLocated(By.id("Map")),90000)
 																		.then(function(){
 																			driver
 																		.executeScript("$('#" + freeSections[n] + "').click()")
