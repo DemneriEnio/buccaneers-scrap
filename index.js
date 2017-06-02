@@ -145,7 +145,7 @@ x(url[count], "iframe@src")
 					function yankees(i) {
 
 						driver
-							.wait(until.elementLocated(By.id(sections_arr[i].value)), 2000)
+							.wait(until.elementLocated(By.id(sections_arr[i].value)), 5000)
 							.then(function() {
 								driver
 									.executeScript("$('#" + sections_arr[i].value + "').mouseover()")
@@ -415,7 +415,17 @@ var job = new CronJob({
 
   onTick: function(){
 
+    var bool = false;
+
+    try {
     teams(-1);
+    bool = true;
+  } catch (e){
+    console.log(e);
+    teams(-1);
+  } //finally {
+    //if(bool) teams(-1);
+  //}
 
   },
 
