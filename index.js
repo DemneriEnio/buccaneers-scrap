@@ -104,6 +104,8 @@ var arrSeat = [];
 var freeSections = [];
 var database = [];
 var emailData = [];
+var idArr = [];
+var newId = "";
 allData = [];
 
 Team.find({}, function(err, snippet){
@@ -114,6 +116,12 @@ Team.find({}, function(err, snippet){
   }
 
   database = snippet[0].team;
+
+  for (var i = 0; i < database.length; i++){
+
+    idArr.push(database[i][3]);
+
+  }
 
 });
 
@@ -241,13 +249,18 @@ x(url[count], "iframe@src")
 
 																													}
 
-                                                          if(database.indexOf(arrData) == !-1){
-                                                            emailData.push(arrData);
-                                                          }
+                                                          newId = String("s" + arrData[0] + "r" + arrData[1] + arrData[2]);
+
+                                                          arrData.push(newId);
 
 																													allData.push(arrData);
 
 																													console.log(arrData);
+
+                                                          if(idArr.indexOf(arrData[4]) === -1){
+                                                            emailData.push(arrData);
+                                                            console.log("new seat");
+                                                          }
 
 																												});
 
@@ -317,10 +330,10 @@ else{
   }else{
   for(var k = 0; k <  emailData.length ; k++){
     str += "<tr><td>" +
-    allData[k][0] + "</td><td>" +
-    allData[k][1] + "</td><td>" +
-    allData[k][2] + "</td><td>" +
-    allData[k][3] + "</td></tr>";
+    emailData[k][0] + "</td><td>" +
+    emailData[k][1] + "</td><td>" +
+    emailData[k][2] + "</td><td>" +
+    emailData[k][3] + "</td></tr>";
 
   }
 }
@@ -415,17 +428,15 @@ var job = new CronJob({
 
   onTick: function(){
 
-    var bool = false;
-
     try {
-    teams(-1);
-    bool = true;
+      teams(-1);
   } catch (e){
-    console.log(e);
-    teams(-1);
-  } //finally {
-    //if(bool) teams(-1);
-  //}
+      console.log(e);
+      teams(-1);
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({extended: false}));
+      app.use(express.static('public'));
+    }
 
   },
 
