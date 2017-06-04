@@ -119,7 +119,7 @@ Team.find({}, function(err, snippet){
 
   for (var i = 0; i < database.length; i++){
 
-    idArr.push(database[i][3]);
+    idArr.push(database[i][4]);
 
   }
 
