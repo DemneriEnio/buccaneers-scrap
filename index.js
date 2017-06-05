@@ -431,6 +431,8 @@ var job = new CronJob({
     try {
       teams(-1);
   } catch (e){
+    driver.quit();
+    const driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(options).build();
       console.log(e);
       teams(-1);
       app.use(bodyParser.json());
