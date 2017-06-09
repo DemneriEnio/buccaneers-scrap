@@ -271,8 +271,10 @@ mongoose.connection.once("open", function(err) {
                                                           }
 
                                                           if (idArr.indexOf(arrData[4]) === -1 && idArr.indexOf(arrData) === -1) {
+
                                                             emailData.push(arrData);
                                                             console.log("new seat");
+
                                                           }
 
                                                         });
