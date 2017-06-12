@@ -116,6 +116,7 @@ mongoose.connection.once("open", function(err) {
       emailData = [];
       var idArr = [];
       var newId = "";
+      var oldId = "";
       allData = [];
 
       Team.find({}, function(err, snippet) {
@@ -263,7 +264,7 @@ mongoose.connection.once("open", function(err) {
 
                                                           newId = String("s" + arrData[0] + "r" + arrData[1] + arrData[2]);
 
-                                                          if (allData.indexOf(arrData) === -1) {
+                                                          if (allData.indexOf(arrData) === -1 || oldId === newId) {
 
                                                             arrData.push(newId);
                                                             allData.push(arrData);
@@ -277,6 +278,8 @@ mongoose.connection.once("open", function(err) {
                                                             console.log("new seat");
 
                                                           }
+
+                                                          oldId = newId;
 
                                                         });
 
