@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));
 
 var allData = [];
+var emailData = [];
 
 const driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(options).build();
 
@@ -112,7 +113,7 @@ mongoose.connection.once("open", function(err) {
       var arrSeat = [];
       var freeSections = [];
       var database = [];
-      var emailData = [];
+      emailData = [];
       var idArr = [];
       var newId = "";
       allData = [];
