@@ -166,7 +166,7 @@ mongoose.connection.once("open", function(err) {
                 function yankees(i) {
 
                   driver
-                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 5000)
+                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 30000)
                     .then(function() {
                       driver
                         .executeScript("$('#" + sections_arr[i].value + "').mouseover()")
@@ -208,7 +208,7 @@ mongoose.connection.once("open", function(err) {
                                   .executeScript("$('#" + freeSections[n] + "').click()")
                                   .then(function() {
                                     driver
-                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')))
+                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')), 30000)
                                       .findElement(By.xpath('div'))
                                       .getAttribute('innerHTML')
                                       .then(function(data) {
@@ -293,7 +293,7 @@ mongoose.connection.once("open", function(err) {
                                         console.log(arrId);
 
                                         driver
-                                          .executeScript("$('#Back_Btn').click()")
+                                          .executeScript("setTimeout(function(){ $('#Back_Btn').click() }, 500)")
                                           .then(function() {
 
                                             n++;
