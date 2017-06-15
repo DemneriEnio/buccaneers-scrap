@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	</head>
 
-	<style>
-		body {
-			padding: 5%;
-		}
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+</head>
 
-		h1, h3, h4, h5 {
-			font-family: HelveticaNeue-Light;
-		}
+<style>
+	body {
+		padding: 5%;
+	}
 
-		img {
-			height: 150px;
-			padding: 20px;
-			background-color: #DDD;
-		}
+	h1,
+	h3,
+	h4,
+	h5 {
+		font-family: HelveticaNeue-Light;
+	}
 
-		th {
-			width: 150px;
-			text-align: center;
-			font-size: 20px;
-		}
+	img {
+		height: 150px;
+		padding: 20px;
+		background-color: #DDD;
+	}
 
-		td{
-			width: 150px;
-			border: 1px solid black;
-			text-align: center;
-			padding-top: 2px;
-			padding-bottom: 2px;
-			font-size: 20px;
-		}
+	th {
+		width: 150px;
+		text-align: center;
+		font-size: 20px;
+	}
 
-	</style>
+	td {
+		width: 150px;
+		border: 1px solid black;
+		text-align: center;
+		padding-top: 2px;
+		padding-bottom: 2px;
+		font-size: 20px;
+	}
+</style>
 
-	<script>
-		$(document).ready(function() {
+<script>
+	$(document).ready(function() {
 
-			var arr = [];
-			var sort = false;
+		var arr = [];
+		var sort = false;
 
-			var str = '';
-setInterval(function() {
+		var str = '';
+		setInterval(function() {
 			$.ajax({
-				url: "/scrap",
+				url: "/scrape",
 				type: "GET",
 				success: function(json) {
 
@@ -72,15 +75,15 @@ setInterval(function() {
 					if(sort){
 						json.a.reverse();
 					}
-
+					
 					arr = json.a;
 					str = "";
-					for(var i = 0; i < json.a.length; i++){
+					for (var i = 0; i < json.a.length; i++) {
 						str += "<tr><td>" +
-						json.a[i][0] + "</td><td>" +
-						json.a[i][1] + "</td><td>" +
-						json.a[i][2] + "</td><td>" +
-						json.a[i][3] + "</td></tr>";
+							json.a[i][0] + "</td><td>" +
+							json.a[i][1] + "</td><td>" +
+							json.a[i][2] + "</td><td>" +
+							json.a[i][3] + "</td></tr>";
 
 					}
 					$("#table").html(str);
@@ -89,52 +92,53 @@ setInterval(function() {
 			});
 		}, 5000);
 
-		$("#sort").on("click", function(){
+		$("#sort").on("click", function() {
 
-			if(sort){
+			if (sort) {
 				sort = false;
-			} else{
+			} else {
 				sort = true;
 			}
 
 			arr.reverse();
 
 			str = "";
-			for(var i = 0; i < arr.length; i++){
+			for (var i = 0; i < arr.length; i++) {
 				str += "<tr><td>" +
-				arr[i][0] + "</td><td>" +
-				arr[i][1] + "</td><td>" +
-				arr[i][2] + "</td><td>" +
-				arr[i][3] + "</td></tr>";
+					arr[i][0] + "</td><td>" +
+					arr[i][1] + "</td><td>" +
+					arr[i][2] + "</td><td>" +
+					arr[i][3] + "</td></tr>";
 
 			}
 			$("#table").html(str);
 		});
 
-		});
-	</script>
+	});
+</script>
 
-	<body align='middle'>
-		<h1></h1><br>
-		<h1>Tampa Bay Buccaneers</h1><br>
-		<h3>Please wait until we fetch data for this team...</h3>
-		<h4>Last update: <span style="color: crimson" id="time">--:--:-- --/--/----</span></h4><br>
-		<div align="middle">
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Section</th>
-						<th>Row</th>
-						<th>Seat</th>
-						<th>Plan Price<button id='sort'><i class='fa fa-arrows-v'></i></button></th>
-					</tr>
-				</thead>
-			</table> <br>
-			<table>
-				<tr id='table'>
-
+<body align='middle'>
+	<h1></h1><br>
+	<h1>Tampa Bay Buccaneers</h1><br>
+	<h3>Please wait until we fetch data for this team...</h3>
+	<h4>Last update: <span style="color: crimson" id="time">--:--:-- --/--/----</span></h4><br>
+	<div align="middle">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Section</th>
+					<th>Row</th>
+					<th>Seat</th>
+					<th>Plan Price<button id='sort'><i class='fa fa-arrows-v'></i></button></th>
 				</tr>
-			</table>
-		</div>
-	</body>
+			</thead>
+		</table> <br>
+		<table>
+			<tr id='table'>
+
+			</tr>
+		</table>
+	</div>
+</body>
+
 </html>

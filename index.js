@@ -481,13 +481,12 @@ mongoose.connection.once("open", function(err) {
 
   job.start();
 
-  app.get('/scrap', function(req, res) {
+  app.get('/scrape', function(req, res) {
 
     Team.find({}, function(err, snippet) {
 
       if (err || !snippet) {
         console.log(err);
-        return;
       }
 
       var then = snippet[0].time;
@@ -505,4 +504,4 @@ mongoose.connection.once("open", function(err) {
 
 });
 
-app.listen(5500);
+app.listen(9000);
