@@ -202,7 +202,7 @@ mongoose.connection.once("open", function(err) {
 
                           function rec(n) {
                             driver
-                              .wait(until.elementLocated(By.id("Map")), 90000)
+                              .wait(until.elementLocated(By.id("Map")), 60000)
                               .then(function() {
                                 driver
                                   .executeScript("$('#" + freeSections[n] + "').click()")
