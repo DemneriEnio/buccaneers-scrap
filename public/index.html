@@ -75,19 +75,21 @@
 					if(sort){
 						json.a.reverse();
 					}
-					
+
 					arr = json.a;
 					str = "";
-					for (var i = 0; i < json.a.length; i++) {
+					for(var i = 0; i < json.a.length; i++){
 						str += "<tr><td>" +
-							json.a[i][0] + "</td><td>" +
-							json.a[i][1] + "</td><td>" +
-							json.a[i][2] + "</td><td>" +
-							json.a[i][3] + "</td></tr>";
+						json.a[i][0] + "</td><td>" +
+						json.a[i][1] + "</td><td>" +
+						json.a[i][2] + "</td><td>" +
+						json.a[i][3] + "</td></tr>";
 
 					}
 					$("#table").html(str);
+
 					$("#time").html(json.b);
+
 				}
 			});
 		}, 5000);
