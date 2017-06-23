@@ -95,7 +95,7 @@ mongoose.connection.once("open", function(err) {
   });
 
   var helper = require('sendgrid').mail;
-  var from_email = new helper.Email('enio1demneri@gmail.com');
+  var from_email = new helper.Email('mordachiamar@gmail.com');
   var subject = 'Tickets';
   var content = new helper.Content('text/plain', '');
   var emails = ['eniodemneri1@gmail.com'];
@@ -429,10 +429,10 @@ mongoose.connection.once("open", function(err) {
 
       content = new helper.Content('text/html', htmlEmail);
 
-      for (var j = 0; j < emails.length; j++) {
-        var to_email = new helper.Email(emails[j]);
-        var mail = new helper.Mail(from_email, subject, to_email, content);
-      }
+      //for (var j=0; j<emails.length; j++){
+      var to_email = new helper.Email('matthewingber@gmail.com');
+      var mail = new helper.Mail(from_email, subject, to_email, content);
+      //  }
 
       var request = sg.emptyRequest({
         method: 'POST',
@@ -446,6 +446,43 @@ mongoose.connection.once("open", function(err) {
         console.log(response.headers);
       });
 
+      content = new helper.Content('text/html', htmlEmail);
+
+      //for (var j=0; j<emails.length; j++){
+      var toEmail = new helper.Email('mordachiamar@gmail.com');
+      var mail = new helper.Mail(from_email, subject, toEmail, content);
+      //  }
+
+      var request = sg.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON(),
+      });
+
+      sg.API(request, function(error, response) {
+        console.log(response.statusCode);
+        console.log(response.body);
+        console.log(response.headers);
+      });
+
+      content = new helper.Content('text/html', htmlEmail);
+
+      //for (var j=0; j<emails.length; j++){
+      var toEmail = new helper.Email('eniodemneri1@gmail.com');
+      var mail = new helper.Mail(from_email, subject, toEmail, content);
+      //  }
+
+      var request = sg.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON(),
+      });
+
+      sg.API(request, function(error, response) {
+        console.log(response.statusCode);
+        console.log(response.body);
+        console.log(response.headers);
+      });
     }
 
   }
@@ -456,20 +493,13 @@ mongoose.connection.once("open", function(err) {
 
     onTick: function() {
 
-      driver.executeScript("location.reload()")
-        .then(function() {
-          try {
-            teams(-1);
-          } catch (e) {
-            console.log(e);
-            teams(-1);
-            app.use(bodyParser.json());
-            app.use(bodyParser.urlencoded({
-              extended: false
-            }));
-            app.use(express.static('public'));
-          }
-        });
+      try {
+        driver.executeScript("location.reload()")
+        teams(-1);
+      } catch (e) {
+        driver.executeScript("location.reload()")
+        teams(-1);
+      }
 
     },
 
