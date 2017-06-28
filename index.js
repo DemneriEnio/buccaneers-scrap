@@ -102,6 +102,12 @@ mongoose.connection.once("open", function(err) {
   sg = require('sendgrid')(String(dbCode));
   //console.log(dbCode);
 
+  function handler(err) {
+      console.log(err);
+      driver.executeScript("location.reload()")
+      teams(-1);
+  }
+
   function teams(count) {
 
     count++;
@@ -143,7 +149,7 @@ mongoose.connection.once("open", function(err) {
 
             driver.get(item);
             driver
-              .wait(until.elementLocated(By.id('Complete_Section_110')), 30000)
+              .wait(until.elementLocated(By.id('Complete_Section_110')), 40000)
               .findElement(By.xpath("parent::*"))
               .getAttribute("innerHTML")
               .then(function(data) {
@@ -166,7 +172,7 @@ mongoose.connection.once("open", function(err) {
                 function yankees(i) {
 
                   driver
-                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 30000)
+                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 40000)
                     .then(function() {
                       driver
                         .executeScript("$('#" + sections_arr[i].value + "').mouseover()")
@@ -208,7 +214,7 @@ mongoose.connection.once("open", function(err) {
                                   .executeScript("$('#" + freeSections[n] + "').click()")
                                   .then(function() {
                                     driver
-                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')), 30000)
+                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')), 40000)
                                       .findElement(By.xpath('div'))
                                       .getAttribute('innerHTML')
                                       .then(function(data) {
@@ -281,11 +287,11 @@ mongoose.connection.once("open", function(err) {
 
                                                           oldId = newId;
 
-                                                        });
+                                                        }, handler);
 
-                                                    });
+                                                    }, handler);
 
-                                                });
+                                                }, handler);
 
                                             }
                                           }
@@ -310,10 +316,10 @@ mongoose.connection.once("open", function(err) {
                                             }
 
 
-                                          });
-                                      });
-                                  });
-                              });
+                                          }, handler);
+                                      }, handler);
+                                  }, handler);
+                              }, handler);
                           }
                           rec(0);
 
@@ -326,13 +332,13 @@ mongoose.connection.once("open", function(err) {
                         }
 
                       }
-                    });
+                    }, handler);
 
                 }
 
                 yankees(0);
 
-              });
+              }, handler);
 
           }
         });
