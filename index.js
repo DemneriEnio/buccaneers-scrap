@@ -149,7 +149,7 @@ mongoose.connection.once("open", function(err) {
 
             driver.get(item);
             driver
-              .wait(until.elementLocated(By.id('Complete_Section_110')), 40000)
+              .wait(until.elementLocated(By.id('Complete_Section_110')), 60000)
               .findElement(By.xpath("parent::*"))
               .getAttribute("innerHTML")
               .then(function(data) {
@@ -169,10 +169,11 @@ mongoose.connection.once("open", function(err) {
 
                 //sections_arr.reverse();
 
+                //funksioni qe merr sections
                 function yankees(i) {
 
                   driver
-                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 40000)
+                    .wait(until.elementLocated(By.id(sections_arr[i].value)), 50000)
                     .then(function() {
                       driver
                         .executeScript("$('#" + sections_arr[i].value + "').mouseover()")
@@ -192,20 +193,16 @@ mongoose.connection.once("open", function(err) {
                                           console.log(sections_arr[i - 1].value);
                                           console.log(result);
                                         }
-                                      });
-                                  },
-                                  function(err) {
-                                    console.log('error');
-                                  });
-
-                            });
-
-                        });
+                                    }, handler);
+                                  }, handler);
+                            }, handler);
+                        }, handler);
 
                       if (i < sections_arr.length) {
                         i += 2;
                         if (i >= sections_arr.length) {
 
+                          //funksioni qe shtyp cdo sections qe merret me siper
                           function rec(n) {
                             driver
                               .wait(until.elementLocated(By.id("Map")), 60000)
@@ -214,7 +211,7 @@ mongoose.connection.once("open", function(err) {
                                   .executeScript("$('#" + freeSections[n] + "').click()")
                                   .then(function() {
                                     driver
-                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')), 40000)
+                                      .wait(until.elementLocated(By.id('seatsBasicMapContainer')), 60000)
                                       .findElement(By.xpath('div'))
                                       .getAttribute('innerHTML')
                                       .then(function(data) {
@@ -265,7 +262,6 @@ mongoose.connection.once("open", function(err) {
                                                             if (m == 1 || m == 3 || m == 5 || m == 7) {
                                                               arrData.push(str[m]);
                                                             }
-
                                                           }
 
                                                           newId = String("s" + arrData[0] + "r" + arrData[1] + arrData[2]);
@@ -278,6 +274,7 @@ mongoose.connection.once("open", function(err) {
 
                                                           }
 
+                                                          //kusht nqs ka new seats
                                                           if (idArr.indexOf(arrData[4]) === -1 && idArr.indexOf(arrData) === -1) {
 
                                                             emailData.push(arrData);
@@ -286,13 +283,9 @@ mongoose.connection.once("open", function(err) {
                                                           }
 
                                                           oldId = newId;
-
                                                         }, handler);
-
                                                     }, handler);
-
                                                 }, handler);
-
                                             }
                                           }
                                         }
@@ -308,14 +301,11 @@ mongoose.connection.once("open", function(err) {
                                                 rec(n)
                                               }, 4000);
                                             } else {
-
                                               //return;
                                               setTimeout(function() {
                                                 teams(count)
                                               }, 2000);
                                             }
-
-
                                           }, handler);
                                       }, handler);
                                   }, handler);
@@ -323,25 +313,21 @@ mongoose.connection.once("open", function(err) {
                           }
                           rec(0);
 
-
                         } else {
-
                           setTimeout(function() {
                             yankees(i)
-                          }, 180);
+                          }, 250);
                         }
-
                       }
                     }, handler);
-
                 }
 
                 yankees(0);
 
               }, handler);
 
-          }
-        });
+            }
+            });
     } else {
 
       Team.findOneAndUpdate({
@@ -433,7 +419,7 @@ mongoose.connection.once("open", function(err) {
 	</body>
 </html>`;
 
-      content = new helper.Content('text/html', htmlEmail);
+      /*content = new helper.Content('text/html', htmlEmail);
 
       //for (var j=0; j<emails.length; j++){
       var to_email = new helper.Email('matthewingber@gmail.com');
@@ -469,7 +455,7 @@ mongoose.connection.once("open", function(err) {
         console.log(response.statusCode);
         console.log(response.body);
         console.log(response.headers);
-      });
+      });*/
 
       content = new helper.Content('text/html', htmlEmail);
 
@@ -495,7 +481,7 @@ mongoose.connection.once("open", function(err) {
 
   var job = new CronJob({
 
-    cronTime: "30 * * * *",
+    cronTime: "*/20 * * * *",
 
     onTick: function() {
 
