@@ -419,7 +419,7 @@ mongoose.connection.once("open", function(err) {
 	</body>
 </html>`;
 
-      /*content = new helper.Content('text/html', htmlEmail);
+      content = new helper.Content('text/html', htmlEmail);
 
       //for (var j=0; j<emails.length; j++){
       var to_email = new helper.Email('matthewingber@gmail.com');
@@ -455,7 +455,7 @@ mongoose.connection.once("open", function(err) {
         console.log(response.statusCode);
         console.log(response.body);
         console.log(response.headers);
-      });*/
+      });
 
       content = new helper.Content('text/html', htmlEmail);
 
@@ -481,7 +481,7 @@ mongoose.connection.once("open", function(err) {
 
   var job = new CronJob({
 
-    cronTime: "*/20 * * * *",
+    cronTime: "30 * * * *",
 
     onTick: function() {
 
